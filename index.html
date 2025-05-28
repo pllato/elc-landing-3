@@ -60,20 +60,41 @@
     .levels .level img { height: 24px; }
 
     .progress-bar {
-      display: flex; align-items: center; gap: 10px;
+      position: relative;
+      height: 24px;
+      display: flex;
+      align-items: center;
     }
-    .progress-bar .flag { height: 20px; }
-    .progress-bar .avatar { height: 30px; }
     .progress-bar .bar {
-      display: flex; flex-grow: 1; height: 4px;
-      background: #e0e0e0; position: relative; border-radius: 2px;
+      flex: 1;
+      height: 6px;
+      background: linear-gradient(to right, #62dc6d 0%, #62dc6d 25%, #b0c4ff 25%, #b0c4ff 100%);
+      border-radius: 3px;
+      position: relative;
     }
     .progress-bar .dot {
-      width: 14px; height: 14px; background: #b0c4ff;
-      border-radius: 50%; margin-right: 25px;
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      width: 14px; height: 14px;
+      border-radius: 50%; background-color: #b0c4ff;
     }
-    .progress-bar .dot.active { background: #62dc6d; }
-    .goal-icon { height: 60px; margin-top: 10px; }
+    .progress-bar .dot:nth-child(1) { left: 0%; background-color: #62dc6d; }
+    .progress-bar .dot:nth-child(2) { left: 33%; }
+    .progress-bar .dot:nth-child(3) { left: 66%; }
+    .progress-bar .dot:nth-child(4) { left: 100%; transform: translate(0%, -50%); }
+    .progress-bar .flag {
+      position: absolute; left: -24px; top: 50%; transform: translateY(-50%); height: 20px;
+    }
+    .progress-bar .avatar {
+      position: absolute; right: -32px; top: 50%; transform: translateY(-50%); height: 34px;
+    }
+
+    .goal-icon {
+      display: block;
+      margin-left: auto;
+      height: 60px;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -96,7 +117,7 @@
         <div class="progress-bar">
           <img src="images/flag_icon.png" alt="flag" class="flag" />
           <div class="bar">
-            <div class="dot active"></div>
+            <div class="dot"></div>
             <div class="dot"></div>
             <div class="dot"></div>
             <div class="dot"></div>
