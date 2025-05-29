@@ -187,24 +187,7 @@
       border-radius: 50%;
     }
     .mountain-block img {
-      margin-bottom: -20px;
-    }
-    @media (max-width: 768px) {
-      .hero {
-        height: auto;
-        padding: 40px 24px;
-      }
-      .hero::before {
-        background-position: center top;
-        background-size: cover;
-        opacity: 0.2;
-      }
-      h1 {
-        font-size: 30px;
-      }
-      .hero__features li {
-        font-size: 16px;
-      }
+      margin-bottom: -10px;
     }
   </style>
 </head>
@@ -247,28 +230,30 @@
       <!-- Step 1 -->
       <div style="background-color: white; border-radius: 20px; padding: 24px; margin-bottom: 24px;">
         <p style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">1. Определим ваш уровень английского</p>
-        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-          <div class="tag"><img src="images/bag_emoji.png"> Beginner</div>
-          <div class="tag"><img src="images/climbing_emoji.png"> Elementary</div>
-          <div class="tag"><img src="images/mountain_emoji.png"> Intermediate</div>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <div class="tag" style="min-width: 120px; justify-content: center;"><img src="images/bag_emoji.png"> Beginner</div>
+          <div class="tag" style="min-width: 120px; justify-content: center;"><img src="images/climbing_emoji.png"> Elementary</div>
+          <div class="tag" style="min-width: 140px; justify-content: center;"><img src="images/mountain_emoji.png"> Intermediate</div>
         </div>
       </div>
       <!-- Step 2 -->
-      <div style="background-color: white; border-radius: 20px; padding: 24px; display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
-        <img src="images/flag_icon.png" alt="Start" style="height: 24px;">
-        <p style="font-size: 18px; font-weight: 600; margin: 0;">2. Составим персональный план обучения</p>
-        <div class="progress-line">
-          <div class="dot"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
-          <img src="images/hero_avatar.png" class="avatar" alt="User">
+      <div style="background-color: white; border-radius: 20px; padding: 24px; margin-bottom: 24px;">
+        <p style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">2. Составим персональный план обучения</p>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <img src="images/flag_icon.png" alt="Start" style="height: 24px;">
+          <div class="progress-line">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <img src="images/hero_avatar.png" class="avatar" alt="User">
+          </div>
         </div>
       </div>
       <!-- Step 3 -->
-      <div class="mountain-block" style="background-color: white; border-radius: 20px; padding: 24px; display: flex; justify-content: space-between; align-items: center;">
+      <div class="mountain-block" style="background-color: white; border-radius: 20px; padding: 24px; display: flex; justify-content: space-between; align-items: end; min-height: 110px;">
         <p style="font-size: 18px; font-weight: 600; margin: 0;">3. Поможем выбрать цель</p>
-        <img src="images/mountain_emoji.png" alt="Mountain" style="height: 80px;">
+        <img src="images/mountain_emoji.png" alt="Mountain" style="height: 80px; margin-bottom: -10px;">
       </div>
     </div>
   </section>
