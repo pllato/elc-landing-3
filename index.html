@@ -172,26 +172,7 @@
     .mountain-block img {
       margin-bottom: -10px;
     }
-      .quiz-btn {
-      background: white;
-      border-radius: 20px;
-      border: 2px solid #222;
-      padding: 12px 20px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      text-align: left;
-      transition: all 0.2s ease-in-out;
-    }
-    .quiz-btn:hover {
-      background-color: #ffe8ee;
-      border-color: #d6336c;
-    }
-    .quiz-btn:focus {
-      outline: none;
-      background-color: #ffd0df;
-      border-color: #d6336c;
-    }
+  </style>
 </head>
 <body>
   <header>
@@ -259,88 +240,5 @@
       </div>
     </div>
   </section>
-
-<!-- Step 4: Quiz Section -->
-<section style="padding: 40px 20px; background-color: #ffffff;">
-  <div style="max-width: 700px; margin: 0 auto;">
-    <h2 style="font-size: 28px; font-weight: 800; margin-bottom: 24px;">Опрос, чтобы лучше понять свою цель:</h2>
-    <div id="quiz-container" style="background-color: #ffd5e1; padding: 24px; border-radius: 24px;">
-      <p id="quiz-progress" style="font-size: 14px; margin-bottom: 12px; font-weight: 600;">Готово: 0%</p>
-      <div id="quiz-question" style="font-size: 20px; font-weight: 700; margin-bottom: 16px;">Вопрос...</div>
-      <div id="quiz-options" style="display: flex; flex-direction: column; gap: 12px;"></div>
-    </div>
-  </div>
-</section>
-<script>
-const questions = [
-  {
-    q: 'Изучали Вы ранее английский язык?',
-    a: ['Да, в школе 🎒', 'Да, проходил(а) курсы 🇺🇸', 'Да, с репетитором 👩🏽‍🏫', 'Нет, только хочу начать 🏁']
-  },
-  {
-    q: 'Какая ваша основная цель изучения языка?',
-    a: ['Работа за границей 💼', 'Путешествия 🌍', 'Переезд/эмиграция ✈️', 'Хочу понимать фильмы и песни 🎬']
-  },
-  {
-    q: 'Сколько времени готовы уделять в неделю?',
-    a: ['1-2 часа 🕐', '3-5 часов 📘', '6-10 часов 💪', 'Более 10 часов 🚀']
-  },
-  {
-    q: 'Какой формат вам удобнее?',
-    a: ['Онлайн в группе 👥', 'Индивидуально онлайн 🧑‍💻', 'Офлайн в классе 🏫', 'Комбинированный 💡']
-  },
-  {
-    q: 'Какой результат хотите через 2 месяца?',
-    a: ['Начать говорить уверенно 🗣️', 'Подтянуть грамматику 📚', 'Понимать на слух 👂', 'Пройти собеседование 💼']
-  }
-];
-let current = 0;
-let answers = [];
-const quizQ = document.getElementById('quiz-question');
-const quizO = document.getElementById('quiz-options');
-const quizP = document.getElementById('quiz-progress');
-
-function renderQuestion() {
-  quizQ.textContent = questions[current].q;
-  quizO.innerHTML = '';
-  quizP.textContent = `Готово: ${Math.round((current / questions.length) * 100)}%`;
-  questions[current].a.forEach(ans => {
-    const btn = document.createElement('button');
-    btn.textContent = ans;
-    btn.className = 'quiz-btn'; border: 2px solid black; padding: 12px 20px; font-size: 16px; font-weight: 600; cursor: pointer; text-align: left;';
-    btn.onclick = () => {
-      answers.push(ans);
-      current++;
-      if (current < questions.length) renderQuestion();
-      else showResult();
-    }
-    quizO.appendChild(btn);
-  });
-}
-
-function showResult() {
-  quizQ.innerHTML = '<p style="font-size: 18px; font-weight: 600; margin-bottom: 12px;">Отлично! Мы передали результаты вашему менеджеру. Заполните форму, и наш менеджер свяжется с вами и расскажет, как вы быстро можете достичь своей цели.</p>';
-
-  const summary = answers.map((a, i) => `<li style='margin-bottom: 6px; font-size: 15px;'>${questions[i].q}<br><strong>${a}</strong></li>`).join('');
-  const stats = `<ul style='background: #fff; padding: 16px; border-radius: 16px; margin-bottom: 16px;'>${summary}</ul>`;
-
-  quizO.innerHTML = stats + '<input type="text" id="quiz-name" placeholder="Ваше имя" style="margin-bottom: 12px; padding: 12px; border-radius: 12px; width: 100%; border: none; font-size: 16px;">' +
-                    '<input type="tel" id="quiz-phone" placeholder="+7 (___) ___-__-__" style="margin-bottom: 12px; padding: 12px; border-radius: 12px; width: 100%; border: none; font-size: 16px;">' +
-                    '<button onclick="submitQuiz()" style="padding: 14px; width: 100%; background-color: #F6C343; font-weight: 700; font-size: 16px; border-radius: 12px; border: none;">Отправить</button>';
-  quizP.textContent = 'Готово: 100%';
-}
-
-function submitQuiz() {
-  const name = document.getElementById('quiz-name').value.trim();
-  const phone = document.getElementById('quiz-phone').value.trim();
-  const message = `📝 Опрос завершён!%0A👤 Имя: ${name}%0A📞 Телефон: ${phone}%0A📋 Ответы:%0A` + answers.map((a, i) => `${i+1}) ${questions[i].q} - ${a}`).join('%0A');
-  const token = '7660930209:AAHx2T9toG1LID97XAlB8Ha1FOgeVfa53lM';
-  const chat_id = '80267795';
-  const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${message}`;
-  fetch(url).then(() => alert('Ответы отправлены!')).catch(() => alert('Ошибка отправки'));
-}
-
-renderQuestion();
-</script>
 </body>
 </html>
