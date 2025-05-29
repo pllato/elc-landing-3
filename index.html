@@ -172,7 +172,26 @@
     .mountain-block img {
       margin-bottom: -10px;
     }
-  </style>
+      .quiz-btn {
+      background: white;
+      border-radius: 20px;
+      border: 2px solid #222;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease-in-out;
+    }
+    .quiz-btn:hover {
+      background-color: #ffe8ee;
+      border-color: #d6336c;
+    }
+    .quiz-btn:focus {
+      outline: none;
+      background-color: #ffd0df;
+      border-color: #d6336c;
+    }
 </head>
 <body>
   <header>
@@ -288,7 +307,7 @@ function renderQuestion() {
   questions[current].a.forEach(ans => {
     const btn = document.createElement('button');
     btn.textContent = ans;
-    btn.style = 'background: white; border-radius: 20px; border: 2px solid black; padding: 12px 20px; font-size: 16px; font-weight: 600; cursor: pointer; text-align: left;';
+    btn.className = 'quiz-btn'; border-radius: 20px; border: 2px solid black; padding: 12px 20px; font-size: 16px; font-weight: 600; cursor: pointer; text-align: left;';
     btn.onclick = () => {
       answers.push(ans);
       current++;
@@ -300,8 +319,12 @@ function renderQuestion() {
 }
 
 function showResult() {
-  quizQ.textContent = 'Спасибо! Мы учли ваши ответы';
-  quizO.innerHTML = '<input type="text" id="quiz-name" placeholder="Ваше имя" style="margin-bottom: 12px; padding: 12px; border-radius: 12px; width: 100%; border: none; font-size: 16px;">' +
+  quizQ.innerHTML = '<p style="font-size: 18px; font-weight: 600; margin-bottom: 12px;">Отлично! Мы передали результаты вашему менеджеру. Заполните форму, и наш менеджер свяжется с вами и расскажет, как вы быстро можете достичь своей цели.</p>';
+
+  const summary = answers.map((a, i) => `<li style='margin-bottom: 6px; font-size: 15px;'>${questions[i].q}<br><strong>${a}</strong></li>`).join('');
+  const stats = `<ul style='background: #fff; padding: 16px; border-radius: 16px; margin-bottom: 16px;'>${summary}</ul>`;
+
+  quizO.innerHTML = stats + '<input type="text" id="quiz-name" placeholder="Ваше имя" style="margin-bottom: 12px; padding: 12px; border-radius: 12px; width: 100%; border: none; font-size: 16px;">' +
                     '<input type="tel" id="quiz-phone" placeholder="+7 (___) ___-__-__" style="margin-bottom: 12px; padding: 12px; border-radius: 12px; width: 100%; border: none; font-size: 16px;">' +
                     '<button onclick="submitQuiz()" style="padding: 14px; width: 100%; background-color: #F6C343; font-weight: 700; font-size: 16px; border-radius: 12px; border: none;">Отправить</button>';
   quizP.textContent = 'Готово: 100%';
