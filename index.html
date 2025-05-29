@@ -307,7 +307,7 @@ function renderQuestion() {
   questions[current].a.forEach(ans => {
     const btn = document.createElement('button');
     btn.textContent = ans;
-    btn.className = 'quiz-btn'; border-radius: 20px; border: 2px solid black; padding: 12px 20px; font-size: 16px; font-weight: 600; cursor: pointer; text-align: left;';
+    btn.className = 'quiz-btn'; border: 2px solid black; padding: 12px 20px; font-size: 16px; font-weight: 600; cursor: pointer; text-align: left;';
     btn.onclick = () => {
       answers.push(ans);
       current++;
